@@ -1,0 +1,324 @@
+# High Performance Computing 2024/25
+
+__Name: Amelie Harrer__  
+__Matrikelnummer: 12570139__
+
+<br>
+
+# Inhaltsverzeichnis  
+1. [Einleitung](#einleitung)  
+2. [Git/Github](#gitgithub)  
+3. [Markdown](#markdown)
+4. [Linux](#linux)
+5. [Zugang zu HPCs und Datentransfer](#zugang-zu-hpcs-und-datentransfer)
+6. [Basic Scripting](#basic-scripting)
+8. SLURM
+9. Container
+10. BacGenStat
+11. [Schluss](#schluss)
+
+<br>
+
+# Einleitung 
+
+High Performance Computing, abgekürt HPC, ist eine Technologie, die Cluster leistungsstarker und parallel arbeitender Prozessoren verwendet, um riesiege Datensätze zu verarbeiten und komplexe Probleme mit extrem hohen Geschwindigkeiten zu lösen. Ein High Performance Computer ist in seiner Rechenleistung einem normalen Personal Computer (PC) dementsprechend deutlich überlegen: Ein typischer HPC besteht aus vielen verschiedenen Nodes, die wiederum je mehrere Central Processing Units (CPUs) mit 8-80 cores, also Rechenkernen, beinhalten. Die Nodes sind dabei oft für bestimmte Aufgaben spezialisiert und über sehr schnelle Datenübertragung (10 Gb/s bis 100 Gb/s) miteinander verbunden. Insgesamt weist die Speicherkapazität eines HPCs zudem mehrere Tera- bis 500 Exabytes auf und ist damit um ein vielfaches größer als die Kapazität von normalen PCs (meist 0,5 bis 4 Terabyte).  
+Diese enorme Rechenleistung von HPCs erschließt vor allem in der Wissenschaft mehr Bereiche und eröffnet neue Perspektiven in der Forschung. In der Biologie z.B. können mithilfe von HPCs sehr große genomische Datensätze in kürzester Zeit verarbeitet und ausgewertet werden, um die Ergebnisse anschließend für weitere Analysen wie z.B. das Erschließen von Verwanschaftsbeziehungen oder das Finden von Mutationen, zu verwenden.  
+Folglich spielt das High Performance Computing im Biologie Studium und vor allem im späteren Berufsalltag durchaus eine große Rolle.   
+Dies ist ein Grund, warum ich mich für den Kurs angemeldet habe. Da ich mich inhaltlich auch besonders für  Genetik und molekulare Wissenschaften interessiere und in diesen Bereichen oft mit so großen Datenmengen gearbeitet wird, erscheint es mit sehr sinnvoll für diese Verarbeitung ein breiteres und tiefergehendes Verständnis zu erlangen.   
+Außerdem nimmt die Bedeutung von Computern und der Umgang mit ihnen auch im Alltag abseits der Wissenschaft immer mehr zu. Ich erhoffe mir aus diesem Kurs, insbesondere aus dem Scipting Teil, einen allgemeineren und gleichzeitig auch detaillierteren Zugang zu dieser Thematik  zu bekommen und das Programmieren besser zu verstehen und zu lernen. Und neben dieser praktischen Erfahrung interessiert es mich auch ganz einfach, wie PCs, HPCs und ihre Programme funktionieren. Deswegen habe ich mir das High Performance Computing ausgesucht und freue mich jetzt auf den Kurs. 
+
+<br>
+
+# Git/Github
+
+Git ist ein online zugängliches Version Control System. Version Control Systeme sind Software tools, die Arbeitsgruppen oder Teams eine Oberfläche für gemeinsames Programmieren, Dokumentieren und Arbeiten bieten. Ein gegenseitiger Austausch und Abgleich der individuellen Ergebnisse ist jederzeit ohne gegenseitige Behinderung möglich, indem ausgehend von einem main branch (~ Hauptpfad) für jede beteiligte Person ein eigener, unabhängiger branch angelegt wird. Diese Pfade können nach Bedarf dann wieder verbunden werden. Innerhalb eines branches können verschiedene repositories (~ Ordner) erstellt werden, in denen durch den Befehl commit aktuelle Änderungen gespeichert werden. Desweiteren werden mithilfe von push- und pull Befehlen zwischen den remote repositories in Github und den offline gespeicherten local repositories Synchronisationen durchgeführt. Hierfür wird, nach dem Erstellen eines Git Accounts und einer gemeinsamen Gruppe, Visual Studio Code mit dem eigenen Namen und der e-Mail durch folgenden Code für die Synchronisation mit Git konfiguriert:
+```
+git config --global user.name "AmelieH21"
+git config --global user.email "amelie.harrer@campus.lmu.de"
+```
+Durch das Arbeiten und Speichern in verschiedenen Ordnern und Pfaden kann jetzt also in Visual Studio Code oder auf Github, der Web-basierten Oberfläche von Git, gemeinsam und individuell programmiert, analysiert und bearbeitet werden ohne einen Verlust von Daten befürchten zu müssen.
+
+<br>
+
+# Markdown
+
+Markdown ist eine vereinfachte Auszeichnungssprache, die Formatierungen von Texten ermöglicht und auch hier auf Github zur visuellen Strukturierung verwendet wird.  
+Zum Kennenlernen einiger Anwendungsbefehle wird im Folgenden ein [Markdown Cheatsheet](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet) durchgearbeitet, das als Einführung dient:
+
+## Überschriften
+Für Überschriften in verschiedenen Größen können unterschiedlich viele # verwendet werden. Je kleiner der Text, desto mehr # werden benötigt.
+### große Überschrift
+#### kleinere Überschrift
+
+## Betonungen
+Abänderungen der Schrift können mithilfe von *, ~ oder _ eingefügt werden. * oder _ erzeugt *kursiven Text*, ** oder __ __fettgedruckte Schrift__, ** __ ** verbindet **_kursive und fette Texte_** und ~~ ~~streicht das Geschriebene durch~~. 
+
+## Listen
+ungeordnete Listen lassen sich mithilfe von
+* Sternchen (*)
+* Minus (-)
+* Plus (+)   
+
+schreiben.   
+Geordnete Listen werden 
+1. nacheinander (1., 2.)
+2. durchnummeriert,
+* Unterlisten mithilfe von zwei Leerzeichen und */Zahl erstellt
+4. und abschlileßend können
+  
+   Paragraphen innerhalb der Liste durch drei Leerzeichen am Zeilenbeginn eingefügt werden.
+
+## Links
+Links können auf unterschiedliche Weise in ein Dokument eingefügt werden:
+```
+[Name des Links](URL der zu verlinkenden Seite oder eine davor festgelegte Definition)
+URLs in spitzen Klammern werden automatisch zu Links {}
+```
+Hier findet man z.B. mehr Informationen zu [unserem Kursleiter](https://www.biologie.uni-muenchen.de/personen/professoren/keller/index.html).  
+Eine [Leitlinie](https://www.tierschutzbund.de/tiere-themen/haustiere/katzen/katzenhaltung), um dem niedlichsten Tier ein schönes zuhause zu bieten.
+
+## Bilder
+Bilder können mittels Inline oder Reference Links in das Dokument eingefügt werden:  
+```
+![image](inline link)
+![image][reference link]
+[refernce link]: link
+```
+Dieses Foto von Taylor Swift z.B. wurde mit einem Inline-Link eingefügt.      
+
+![image](https://github.com/user-attachments/assets/4180607f-8420-4367-ae06-4c1b4f5376f2)
+
+## Code und Syntax Highlighting
+Code Highlighting wird in vielen verschiendenen Sprachen unterstützt, indem die entsprechenden Absätze mithilfe von ```language abgregrenzt werden.  
+```python
+language = "Python"
+print "Ein" language "Skript könnte dann z.B. so aussehen."
+```
+
+## Fußnoten
+Fußnoten lassen sich mit [^Zahl] erstellen[^1].
+[^1]: Hier unten ist es aber langweilig, schnell wieder zurück!
+
+## Tabellen
+Tabellen lassen sich mithilfe von Pipes, Bindestrichen und Doppelpunkten erstellen:
+```
+| Kategorie        | Anzahl   | Zeitpunkt  |
+| :-------------:  |:------:  | :-------:  |
+| Studierende      | 52.972   | WS 23/24   |
+| ProfessorInnen   | 835      | SS 23      |
+| Studiengänge     | 314      | WS 23/24   |
+```
+Hier gibt es ein paar Zahlen zur LMU:
+| Kategorie        | Anzahl   | Zeitpunkt  |
+| :-------------:  |:------:  | :-------:  |
+| Studierende      | 52.972   | WS 23/24   |
+| ProfessorInnen   | 835      | SS 23      |  
+| Studiengänge     | 314      | WS 23/24   |
+
+## Blockzitate
+Bei Bedarf können Anmerkungen oder Zitate durch ">" am Zeilenanfang
+> besonders hervorgehoben werden.
+
+## Abtrennungen
+Zur Übersichtlichkeit lassen sich mit drei oder mehr
+
+__"*"__
+****
+__"-"__
+____
+__"_"__
+____
+Abtrennungen erstellen.
+
+<br>
+
+# Linux
+Linux ist ein Open Source Unix-ähnliches Computerbetriebssystem, das von Linus Torvalds initiiert wurde. Durch das Open Source Modell können Verbesserungen von vielen verschiedenen Personen vorgenommen werden, sodass die Produktrichtung von einer Benutzergemeinschaft vorgegeben wird und es zu einer stetigen Weiterentwicklung kommt. Linux ist das dominierende Betriebssystem für Webserver, kostenlos, schnell und leistungsstark, hat einen für jeden zugänglichen Quellcode und kann dadurch für spezifische Anwendungen optimal angepasst und permanent auf Sicherheitsprobleme untersucht werden. Linux ist deswegen weltweit sehr beliebt und auch die meisten HPCs laufen mit Linux. Folglich wird in diesem Kurs ebenfalls mit Linux gearbeitet.  
+Da das auf den Apple PCs vorinstallierte macOS ebenfalls ein auf Unix basierendes Bestriebssystem und damit Linux sehr ähnlich ist, kann im Kurs direkt auf den PCs gearbeitet werden. Dabei wird das in macOS enthaltene Computerprogramm Terminal als Kommandozeile verwendet.  
+Der Aufbau des Terminals sieht dabei allgemein wie folgt aus:  
+```
+Computer:verwendetes Verzeichnis Benutzername$
+```
+> `$` verdeutlicht, dass der Computer auf einen Input wartet. Diese Bereitschaft kann mithilfe von `ctrl c` wiederhergestellt werden.     
+
+Konkret sah das in meinem Fall dann z.B. so aus:
+```
+LMBIDP1-MCCIP29:HPC2425 ra24faj$
+```
+Als Interpreter der Kommandozeile fungiert die Unix-Shell, die einzelne Kommandos und ganze Shellskripte laden und ausführen kann. Kommandos werden dabei immer hinter dem `$` und nach dem gleichen Prinzip geschrieben:
+```
+<Programm Name> [Parameter] [Argumente]
+```
+>`<>` verdeutlicht notwendige, `[]` optionale Angaben. Parameter und Argumente werden zudem meist mit `-` abgerufen, postitionale Parameter müssen dabei immer ganz hinten stehen.
+
+Das Ergebnis des Befehls wird dann im Terminal als standard output ausgegeben. Sollte das Kommando gewollt keinen Output erzeugen und es erscheint gleichzeitig auch keine Fehlermeldung, dann kann in aller Regel davon ausgegangen werden, dass der Befehl erfolgreich ausgeführt wurde.  
+Einige hilfreiche Kommandos mit verschiendenen Parametern, Argumenten und ihren entsprechenden Outputs werden in den folgenden Tabellen zusammengefasst.
+
+## Allgemeines
+|Command|Output|
+|:------|:-----|
+| $ `man` |Abrufen des manuals; anwendbar für die meisten Kommandos|
+| $ `h` oder `-help` |Parameter; ebenfalls anwendbar für die meisten Kommandos|
+| $ `history` |Auflistung aller bereits verwendeten Befehle|
+| `tab` |vervollständigt Kommandos oder Datei-/Ordnernamen|
+| `ctrl ↑` |ruft das vorausgegangene Kommando im Verlauf auf|
+| `ctrl ↓` |ruft das anschließende Kommando im Verlauf auf|
+| `ctrl-r` |ermöglicht mittels reverse search die Suche von bestimmten Kommandos|
+
+## Organisation und Navigation
+Daten sind in Linux in Verzeichnissen und Ordnern in einer hierarchischen Struktur gespeichert und können jeweils über die entsprechenden Pfade aufgerufen werden.
+|Command|Output|
+|:------|:-----|
+| $ `pwd` |gibt das aktuelle arbeitende Verzeichnis an|
+| $ `cd /path` |ändert das aktuelle arbeitende Verzeichnis in den angegebenen path|
+| $ `cd ../` |wechselt in das übergeordnete Verzeichnis|
+| $ `cd` oder `cd ~/` |wechselt in das Hauptverzeichnis zurück|
+| $ `ls` |Auflistung aller Dateien im aktuellen Verzeichnis|
+| $ `ls -l` und `ls -l -h` |gibt Extrainformationen über die Dateien im Verzeichnis an|
+
+## Ordner und Dateien 
+|Command|Output|
+|:------|:-----|
+| $ `mkdir Neu1` |ein Ordner mit den Namen Neu1 wird erstellt| 
+| $ `touch Neu2`|eine Datei mit dem Namen Neu2 wird erstellt|
+| $ `cp source Ziel` |kopiert die source Datei zum Ziel|
+| $ `cp -r source Ziel` |kopiert den source Ordner mit Inhalt zum Ziel|
+| $ `mv source Ziel` |bewegt die source Datei zum Ziel; kann auch zum Umbennen verwendet werden|
+| $ `rm Neu2` |löscht die Datei Neu2|
+| $ `rm -r Neu1` |löscht den Ordner Neu1|
+
+> Der Befehl `rm`, also remove, löscht Dateien unwiderruflich und sollte deshalb mit Vorsicht verwendet werden.
+
+## Inhalt von Dateien 
+|Command|Output|
+|:------|:-----|
+| $ `less Bsp.txt` |öffnet Inhalt der Textdatei Bsp im Lesemodus|
+| $ `cat Bsp.txt Bsp2.txt` |öffnet und verbindet Inhalt von mehreren Textdateien in der Kommandozeile|
+| $ `echo "Inhalt"` |schreibt den String "Inhalt" als Output|
+| $ `echo "Inhalt" > Bsp.txt` |überschreibt die Textdatei Bsp. mit den String "Inhalt"|
+| $ `echo "Inhalt" >> Bsp.txt` |ergänzt die Textdatei Bsp. mit den String "Inhalt"|
+| $ `head Bsp.txt` |öffnet die ersten 10 Zeilen der Textdatei Bsp in der Kommandozeile|
+| $ `head -n Bsp.txt` |öffnet die ersten n Zeilen der Textdatei Bsp in der Kommandozeile|
+| $ `tail Bsp.txt` |öffnet die letzten 10 Zeilen der Textdatei Bsp in der Kommandozeile|
+| $ `tail -n Bsp.txt` |öffnet die letzten n Zeilen der Textdatei Bsp in der Kommandozeile|
+| $ `cut -c 1-10 Bsp.txt` |öffnet die ersten 10 Zeichen von jeder Zeile der Textdatei Bsp|
+| $ `wc Bsp.txt` |zählt je nach Parameter Zeichen, Wörter, Zeilen... der Textdatei|
+| $ `sort Bsp.txt` |sortiert die Textdatei je nach Parameter alphanumerisch, numerisch...|
+| $ `uniq Bsp.txt` |entfernt doppelte Zeilen in der Textdatei Bsp|
+| $ `grep Vorgabe Bsp.txt` |wählt alle Zeilen der Textdatei aus, die das Wort Vorgabe enthalten|
+| $ `grep -i Vorgabe Bsp.txt` |wählt alle Zeilen der Textdatei aus, die das Wort Vorgabe oder vorgabe enthalten|
+| $ `tr A B < Bsp.txt` |ersetzt jedes A in der Textdatei mit einem B|
+
+> Um den Lesemodus von Dateien zu verlassen, muss die Taste `q` verwendet werden.  
+ 
+> Verschiedene Kommandos können über pipes `|` miteinander verbunden werden, sodass aus vielen kleinen Kommandos komplexe und größere Befehle entstehen. Der standard output des einen Befehls kann dabei als standard input eines anderen verwendet werden.   
+> Bsp: $ `head -n 100 Bsp.txt | grep Vorgabe |  tr a h`   
+> Mithilfe der pipes werden jetzt durch dieses eine Kommando in den ersten 100 Zeilen der Textdatei Bsp alle Zeilen rausgesucht, die das Wort Vorgabe enthalten und in diesen Zeilen wird dann jedes a durch ein h ersetzt.  
+
+> `*` können zusätzlich als Wildcards verwendet werden. Bei Eingabe und je nach zusätzlicher Bedingung wird z.B. alles ausgewählt oder ein Kommando auf alles angewendet.   
+> Bsp: $ `ls *.txt`   
+> Alle Dateien im Verzeichnis, die auf txt enden, werden aufgelistet.   
+
+<br>
+
+# Zugang zu HPCs und Datentransfer 
+HPCs besitzen in aller Regel keine Monitore und damit auch keine direkte Verbindungsoption (interface option) für die NutzerInnen. Deswegen ist ein remote login auf den Server des HPCs notwendig, um Daten verarbeiten zu können. 
+
+<br>
+
+# Basic Scripting
+Um das Bearbeiten und Lösen von Aufgaben zu automatisieren und sie reproduzierbar zu machen, wird oft, auch beim High Performance Computing, mit Scripting gearbeitet. Dabei wird ein kompletter Code einer vorher festgelegten Programmiersprache innerhalb einer Datei, eines Skripts, gespeichert und kann dann durch Abrufen des Skripts immer wieder von verschiedenen Geräten, Servern und Personen ausgeführt werden.     
+Skripte können je nach Code verschieden strukturiert sein, allerdings steht zu Beginn immer die sogenannte Shebang. Sie gibt an, welche Art Skript vorliegt und welche Software verwendet werden muss, um es auszuführen.  
+```
+#!/bin/sh
+```
+Diese Shebang z.B. führt ein Shellskript ein und verweist auf Unix-Shells als Interpreter. Es können aber auch auch andere Sprachen, wie bash, zsh, phython oder R in der Shebang angegeben und verwendet werden.    
+Um Skripte in Unix-Shells laden und ausführen zu können, werden verschiedene Befehle in der Kommandozeile verwendet:
+|Befehl|Ausführung|
+|:------|:-----|
+| $ `chmod +x script.sh` |erlaubt und ermöglicht Ausführung des Skripts|
+| $ `./script.sh` |ruft Skript in der Sprache auf, die in der Shebang definiert wurde|  
+| $ `sh script.sh` |ruft das Skript als Shellskript auf; auch anwendbar für andere Programmiersprachen|  
+
+Shellskripte enthalten viele der beim Programmieren üblicherweise verwendeten Parameter wie Prints, Variablen, Loops und Conditions.   
+Anhand eines Beispiels wird das im konkreten Shellskript noch etwas genauer erläutert:   
+## Shebang und prints
+```sh
+#!/bin/sh                              # Shebang
+# Author: Amelie                       # Kommentar; wird nicht extra ausgeführt                `#` für Kommentare
+echo "Hello Taylor"                    # printed den String `Hello Taylor` als Output          Anführungszeichen wichtig
+```
+## Variablen
+```sh
+name="Amelie"                                          # die Variable `name` wird definiert                    keine Leerzeichen bei `=`
+read name                                              # die Variable wird gelesen und gespeichert
+number=13                                              # die Variable `number` wird definiert                  bei Zahlen keine Anführungszeichen
+echo "It's $name, hi, I'm the problem it's $name"      # printed den String unter Verwendung der Variable      Aufrufen von Variablen mit `$`
+echo "Lucky number $number"                            # printed den String unter Verwendung der Variable                                           
+```
+## Positionale Variablen
+```sh
+name=$1                         # Definition einer ersten positionalen Variable                                 wird bei Aufrufbefehl des Skripts definiert     
+sh script.sh "Leonie"           # Aufrufen des Skripts mit erster positionalen Variable                         z.B. im Terminal
+echo "It's $name"               # printed den String unter Verwendung der positionalen Variable
+workdir=$(pwd)                  # speichert den Befehl `pwd` in der Variable `workdir`                          Speichern von Befehlen mit `$()` 
+echo $workdir                   # printed den Inhalt von `workdir`, also den Pfad des aktuellen Verzeichnisses
+```
+## Arrays
+```sh
+names[1]="Helena"                  # Definition des ersten Array Eintrags            Erstellen von Arrays mit `[]`
+names[2]="Milli"                   # Definition des zweiten Array Eintrags 
+names[3]="Amalia"                  # Definition des dritten Array Eintrags 
+echo ${names[*]}                   # printed jeden Eintrag des Arrays                Aufrufen von Arrays mit `${}`
+echo ${names[1]}                   # printed nur den ersten Eintrag des Arrays
+```
+## Schleifen (loops)
+```sh
+i=1                                  # die Variable `i` wird definiert
+for name in ${names[*]};             # iteriert über den Array                           Iterationen werden mit `for` und `;` eingeleitet
+    do                               # beginnt Ausführung der Schleife
+        echo "$i :$name"             # printed Inhalt der beiden Variablen
+        i=$(($i+1))                  # addiert bei jeder Iteration 1 zur Variable `i`    `(())` ermöglicht mathematische Rechnungen
+    done                             # beendet Ausführung der Schleife
+```
+## Bedingungen (conditions)
+```sh
+name=$1                                  # definiert positionale Variable
+if [ $name == "Milli" ]                  # definfiert Bedingung                                `if` leitet Bedingungen ein
+    then                                 # legt Ausführung fest, wenn Bedingung zutrifft
+        echo "You play the organ."       # printed den String
+    else                                 # legt Ausführung fest, wenn Bedingung nicht zutrifft
+        echo "You don´t play the organ." # printed den String
+fi                                       # schließt Bedingung                                   `fi` beendet Bedingungen
+```
+## Kombination von Schleifen und Bedingungen
+```sh
+for name in ${names[*]};                 # iteriert über den Array
+    do                                   # beginnt Ausführung der Schleife
+          if [ $name == "Milli" ]        # definfiert Bedingung 
+            then                         # legt Ausführung fest, wenn Bedingung zutrifft
+              names[2]="Organist"        # ersetzt zweiten Eintrag im Array
+          fi                             # schließt Bedingung
+       echo $name                        # printed nacheinander Einträge des Arrays
+    done                                 # beendet Ausführung der Schleife
+```  
+
+> Ein Shellskript wird immer von oben nach unten durchgeführt. Dadurch können Variablen, wenn sie mehrmals definiert sind, im Laufe des Skripts überschrieben werden.  
+
+> Im Shellskript wird bei 1 angefangen zu zählen, nicht bei 0.
+
+> Schleifen können mit `break` abgebrochen werden.  
+
+<br>
+
+![image](https://github.com/user-attachments/assets/89adb5dd-9301-49d3-9724-81f9a3c53527)
+![image](https://github.com/user-attachments/assets/0f8d4945-960b-4fb2-869a-5a17288c6400)
+
+<br>
+
+# Schluss
+Nach Abschluss dieses Kurses kann ich von mir behaupten, dass ich ein deutlich besseres Verständnis für PCs, HPCs, die Arbeit mit ihnen und allgemein für das Programmieren bekommen habe. Wir haben viele verschiedene Themenbereiche durchgesprochen, von Version Control Systemen, über Scripting, SLURM und Containern bis hin zur anwendungsbezogenen Aufgabenstellung BacGenStat, sodass ich einen guten Überblick bekommen habe und deutlich besser für den theoretischen Laboralltag gerüstet bin als davor.      
+Der Aufbau des Kurses war zum Lernen optimal, da die Teile aufeinandern aufbauen und die zu Beginn erlernten Grundlagen, z.B. im Scripting, im Prinzip alle am Ende für BacGenStat benötigt wurden. Dadurch konnte ich vieles im Laufe des Kurses noch einmal wiederholen und vertiefen.  
+Auch das Dokumentieren der durchgeführten Arbeiten im Protokoll hat dazu geführt, dass ich Details oft noch einmal genauer durchdacht und dann verstanden habe. Außerdem kann ich jetzt jederzeit noch einmal nachschauen, was genau wir gemacht haben und warum.     
+In der Praxis werde ich zwar bestimmt trotzdem nicht immer direkt wissen, wie und welchen Code ich schreiben muss und wie, wo und wann ich ihn auf einem HPC laufen lassen kann, aber ich habe viel über die Herangehensweise an bestimmte Aufgabenstellungen gelernt. Auch das Kennenlernen von neuen tools sollte es mir jetzt erleichtern, um Lösungsansätzen zu finden.   
+Neben diesem für mich persönlich tollem Lernerfolg hat mir hat High Performance Computing insgesamt auch einfach Fall Spaß gemacht. Wenn Probleme gelöst werden und Codes funktionieren, die ich selbst geschrieben habe, ist das wirklich ein tolles Gefühl. Außerdem herrschte vor Ort immer eine sehr angenehme Arbeits- und Lernatmosphäre, in der man Fragen stellen und Hilfe bekommen konnte, sodass ich den Kurs mit Sicherheit weiterempfehlen werde.   
